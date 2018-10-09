@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using MvvmFoundation.Wpf;
+using UMU_GUI.ViewModels;
 
-namespace UMU_GUI.ViewModel
+namespace UMU_GUI.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
