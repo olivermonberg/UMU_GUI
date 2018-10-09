@@ -22,7 +22,7 @@ namespace UMU_GUI.ViewModel
         {
             get
             {
-                return _loginCommand ?? (_loginCommand = new RelayCommand(Login, CanLogin()));
+                return _loginCommand ?? (_loginCommand = new RelayCommand(Login));
             }
         }
 
@@ -31,9 +31,9 @@ namespace UMU_GUI.ViewModel
 
         }
 
-        public bool CanLogin(string email, string password)
-        {
-            
-        }
+        //public bool CanLogin(string email, string password)
+        //{
+        //    
+        //}
     }
 }
