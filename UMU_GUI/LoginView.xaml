@@ -29,6 +29,12 @@
             </Style.Setters>
         </Style>
 
+        <Style TargetType="{x:Type Image}">
+            <Style.Setters>
+                <Setter Property="Margin" Value="5"/>
+            </Style.Setters>
+        </Style>
+
     </Window.Resources>
 
     <Grid>
