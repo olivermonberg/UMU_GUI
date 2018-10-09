@@ -5,23 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UMU_GUI"
         xmlns:Model="clr-namespace:UMU_GUI.Model"
+        xmlns:converter="clr-namespace:UMU_GUI.Converter"
         mc:Ignorable="d"
-        Title="UniMeetUp" Height="781.158" Width="1205.935">
+        Title="UniMeetUp" Height="608.903" Width="1101.781">
 
     <Window.Resources>
         <Model:UserAccount x:Key="UserAccount"></Model:UserAccount>
 
-        <Style TargetType="{x:Type TextBox}">
-            <Style.Setters>
-                <Setter Property="Margin" Value="5"/>
-            </Style.Setters>
-        </Style>
+        <converter:LoginConverter x:Key="LoginConverter"></converter:LoginConverter>
 
-        <Style TargetType="{x:Type Label}">
-            <Style.Setters>
-                <Setter Property="Margin" Value="5"/>
-            </Style.Setters>
-        </Style>
 
         <Style TargetType="{x:Type Button}">
             <Style.Setters>
@@ -50,7 +42,6 @@
 
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
                         <Style.Resources>
                             <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
                                 <VisualBrush.Visual>
@@ -72,6 +63,7 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
+
             <TextBox Name="tbPassword" Text="{Binding Password}" Margin="5">
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -104,7 +96,14 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" Name="bttnCreateAccount" Content="Create Account"></Button>
-                <Button Grid.Column="1" Name="bttnLogin" Content="Login"></Button>
+                <Button Grid.Column="1" Name="bttnLogin" Content="Login" Command="{Binding LoginCommand}">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource LoginConverter}">
+                            <Binding Path="Email" ElementName="tbEmail"></Binding>
+                            <Binding Path="Password" ElementName="tbPassword"></Binding>
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                </Button>
 
             </Grid>
         </StackPanel>

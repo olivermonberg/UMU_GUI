@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\LoginConverter.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\UserAccount.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
