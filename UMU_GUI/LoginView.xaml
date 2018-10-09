@@ -6,12 +6,28 @@
         xmlns:local="clr-namespace:UMU_GUI"
         xmlns:Model="clr-namespace:UMU_GUI.Model"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    
+        Title="UniMeetUp" Height="781.158" Width="1205.935">
+
     <Window.Resources>
         <Model:UserAccount x:Key="UserAccount"></Model:UserAccount>
 
-        
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Setters>
+                <Setter Property="Margin" Value="5"/>
+            </Style.Setters>
+        </Style>
+
+        <Style TargetType="{x:Type Label}">
+            <Style.Setters>
+                <Setter Property="Margin" Value="5"/>
+            </Style.Setters>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Style.Setters>
+                <Setter Property="Margin" Value="5"/>
+            </Style.Setters>
+        </Style>
 
     </Window.Resources>
 
@@ -22,19 +38,24 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1" DataContext="{StaticResource UserAccount}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1" DataContext="{StaticResource UserAccount}">
+            <Image Source="umu_logo.png" MaxWidth="400"></Image>
 
-            <TextBox Grid.Row="2" Name="tbUserName" Text="{Binding UserName}"></TextBox>
-            <TextBox Grid.Row="3" Name="tbPasswotd" Text="{Binding Password}"></TextBox>
+            <Label Content="Username"></Label>
+            <TextBox Name="tbUserName" Text="{Binding UserName}"></TextBox>
+            <Label Content="Password"></Label>
+            <TextBox Name="tbPasswotd" Text="{Binding Password}"></TextBox>
 
-</Grid>
-    </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Name="bttnCreateAccount" Content="Create Account"></Button>
+                <Button Grid.Column="1" Name="bttnLogin" Content="Login"></Button>
+            </Grid>
+        </StackPanel>
+
+        </Grid>
 </Window>
