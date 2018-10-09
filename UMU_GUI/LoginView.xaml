@@ -46,11 +46,56 @@
 
         <StackPanel Grid.Column="1" DataContext="{StaticResource UserAccount}">
             <Image Source="umu_logo.png" MaxWidth="400"></Image>
+            <TextBox Name="tbEmail" Text="{Binding Email}" Margin="5">
 
-            <Label Content="Username"></Label>
-            <TextBox Name="tbUserName" Text="{Binding UserName}"></TextBox>
-            <Label Content="Password"></Label>
-            <TextBox Name="tbPasswotd" Text="{Binding Password}"></TextBox>
+                <TextBox.Style>
+                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="E-mail" Foreground="LightGray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox Name="tbPassword" Text="{Binding Password}" Margin="5">
+                <TextBox.Style>
+                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="Password" Foreground="LightGray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -60,8 +105,9 @@
 
                 <Button Grid.Column="0" Name="bttnCreateAccount" Content="Create Account"></Button>
                 <Button Grid.Column="1" Name="bttnLogin" Content="Login"></Button>
+
             </Grid>
         </StackPanel>
 
-        </Grid>
+    </Grid>
 </Window>
