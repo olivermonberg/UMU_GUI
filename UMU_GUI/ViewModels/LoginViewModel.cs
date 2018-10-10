@@ -33,6 +33,9 @@ namespace UMU_GUI.ViewModels
             string Password = values[1].ToString();
             //var param = (Tuple<object, object>)parameter;
 
+
+            _loginModel.Check_if_Email_and_password_is_in_database(Email, Password);
+
             Console.WriteLine("Username : " + Email);
             Console.WriteLine("Password : " + Password);
 

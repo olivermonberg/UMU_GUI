@@ -15,6 +15,7 @@
         <DataTemplate x:Name="LoginTemplate" DataType="{x:Type viewmodels:LoginViewModel}">
             <views:LoginView DataContext="{Binding}"/>
         </DataTemplate>
+
     </Window.Resources>
     <Grid>
         <ContentControl Content="{Binding}"/>
