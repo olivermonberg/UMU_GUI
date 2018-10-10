@@ -24,5 +24,17 @@ namespace UMU_GUI.Views
         {
 
         }
+
+        private void passwordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (passwordBox.Password == "Password")
+            {
+                statusText.Text = "'Password' is not allowed as a password.";
+            }
+            else
+            {
+                statusText.Text = string.Empty;
+            }
+        }
     }
 }
