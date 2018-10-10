@@ -1,44 +1,42 @@
-﻿<Window x:Class="UMU_GUI.LoginView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UMU_GUI"
-        xmlns:Model="clr-namespace:UMU_GUI.Model"
-        xmlns:converter="clr-namespace:UMU_GUI.Converter"
-        mc:Ignorable="d"
-        Title="UniMeetUp" Height="608.903" Width="1101.781">
-
-    <Window.Resources>
-        <Model:UserAccount x:Key="UserAccount"></Model:UserAccount>
-
+﻿<UserControl x:Class="UMU_GUI.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:model="clr-namespace:UMU_GUI.Model"
+             xmlns:converter="clr-namespace:UMU_GUI.Converter"
+             xmlns:viewModels="clr-namespace:UMU_GUI.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <model:UserAccount x:Key="UserAccount"></model:UserAccount>
         <converter:LoginConverter x:Key="LoginConverter"></converter:LoginConverter>
-
+        <viewModels:LoginViewModel x:Key="LoginViewModel"></viewModels:LoginViewModel>
 
         <Style TargetType="{x:Type Button}">
             <Style.Setters>
                 <Setter Property="Margin" Value="5"/>
             </Style.Setters>
         </Style>
-
         <Style TargetType="{x:Type Image}">
             <Style.Setters>
                 <Setter Property="Margin" Value="5"/>
             </Style.Setters>
         </Style>
 
-    </Window.Resources>
+     </UserControl.Resources>
 
-    <Grid>
+    
+    <Grid Background="White" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="1" DataContext="{StaticResource UserAccount}">
+        <StackPanel Grid.Column="1" >
             <Image Source="umu_logo.png" MaxWidth="400"></Image>
-            <TextBox Name="tbEmail" Text="{Binding Email}" Margin="5">
+            <TextBox Name="tbEmail" DataContext="{StaticResource UserAccount}" Text="{Binding Email}" Margin="5">
 
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
@@ -64,7 +62,7 @@
                 </TextBox.Style>
             </TextBox>
 
-            <TextBox Name="tbPassword" Text="{Binding Password}" Margin="5">
+            <TextBox Name="tbPassword" DataContext="{StaticResource UserAccount}" Text="{Binding Password}" Margin="5">
                 <TextBox.Style>
                     <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                         <Style.Resources>
@@ -89,24 +87,34 @@
                 </TextBox.Style>
             </TextBox>
 
-            <Grid>
+            <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Name="bttnCreateAccount" Content="Create Account"></Button>
-                <Button Grid.Column="1" Name="bttnLogin" Content="Login" Command="{Binding LoginCommand}">
+                <Button Grid.Column="0" Name="btnCreateAccount" Content="Create Account" Click="btnCreateAccount_Click"></Button>
+                <Button DataContext="{StaticResource LoginViewModel}" Grid.Column="1" Name="btnLogin" Content="Login" Command="{Binding LoginCommand}">
                     <Button.CommandParameter>
                         <MultiBinding Converter="{StaticResource LoginConverter}">
-                            <Binding Path="Email" ElementName="tbEmail"></Binding>
-                            <Binding Path="Password" ElementName="tbPassword"></Binding>
+                            <Binding Path="Text" ElementName="tbEmail"></Binding>
+                            <Binding Path="Text" ElementName="tbPassword"></Binding>
                         </MultiBinding>
                     </Button.CommandParameter>
                 </Button>
-
             </Grid>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Forget password" Click="Password_btnClick">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <ContentPresenter />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <CheckBox Margin="39,5,0,0" />
+                <Label Content="I accept the terms"/>
+            </StackPanel>
         </StackPanel>
 
     </Grid>
-</Window>
+</UserControl>
