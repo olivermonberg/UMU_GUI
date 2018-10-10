@@ -13,16 +13,5 @@ namespace UMU_GUI.Views
         {
             InitializeComponent();
         }
-
-        private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
-        {
-           
-            App.Current.MainWindow.DataContext = new CreateAccountView();
-        }
-
-        private void Password_btnClick(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

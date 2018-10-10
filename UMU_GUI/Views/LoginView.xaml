@@ -93,8 +93,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Name="btnCreateAccount" Content="Create Account" Click="btnCreateAccount_Click"></Button>
-                <Button DataContext="{StaticResource LoginViewModel}" Grid.Column="1" Name="btnLogin" Content="Login" Command="{Binding LoginCommand}">
+                <Button Grid.Column="0" Name="btnCreateAccount" Content="Create Account" DataContext="{StaticResource LoginViewModel}" Command="{Binding CreateAccountBtnCommand}"></Button>
+                <Button Grid.Column="1" Name="btnLogin" Content="Login" DataContext="{StaticResource LoginViewModel}" Command="{Binding LoginCommand}">
                     <Button.CommandParameter>
                         <MultiBinding Converter="{StaticResource LoginConverter}">
                             <Binding Path="Text" ElementName="tbEmail"></Binding>
@@ -104,7 +104,7 @@
                 </Button>
             </Grid>
             <StackPanel Orientation="Horizontal">
-                <Button Content="Forget password" Click="Password_btnClick">
+                <Button Content="Forgot password">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <ContentPresenter />

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using UMU_GUI.Model;
 using UMU_GUI.ViewModels;
 
 namespace UMU_GUI
@@ -10,8 +11,9 @@ namespace UMU_GUI
     {
         public MainWindow()
         {
-            InitializeComponent();
             DataContext = new LoginViewModel();
+            InitializeComponent();
+            
         }
 
 

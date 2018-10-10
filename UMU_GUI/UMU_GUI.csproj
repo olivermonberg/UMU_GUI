@@ -59,12 +59,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\CreateAccountConverter.cs" />
     <Compile Include="Converter\LoginConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\UserAccount.cs" />
+    <Compile Include="DataAccessLayer\DataAccessLayer.cs" />
     <Compile Include="ViewModels\CreateAccountViewModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -118,9 +120,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Views\umu_logo.png" />
   </ItemGroup>
