@@ -18,6 +18,7 @@ namespace UMU_GUI.Model
     {
         public bool Check_if_Email_and_password_is_in_database(string Email, string Password)
         {
+
             return true;
         }
     }

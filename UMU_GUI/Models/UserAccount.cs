@@ -8,6 +8,10 @@ namespace UMU_GUI.Model
 {
     public class UserAccount
     {
+        UserAccount()
+        {
+
+        }
         public string Email { get; set; }
         public string Password { get; set; }
         
