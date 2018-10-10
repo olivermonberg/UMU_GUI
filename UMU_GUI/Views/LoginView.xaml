@@ -112,7 +112,7 @@
                     </Button.Template>
                 </Button>
                 <CheckBox Margin="39,5,0,0" />
-                <Label Content="I accept the terms"/>
+                <Label Content="Remember me"/>
             </StackPanel>
         </StackPanel>
 

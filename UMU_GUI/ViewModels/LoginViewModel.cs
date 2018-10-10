@@ -36,7 +36,6 @@ namespace UMU_GUI.ViewModels
             Console.WriteLine("Username : " + Email);
             Console.WriteLine("Password : " + Password);
 
-            
         }
 
         private bool CanLogin(object parameter)

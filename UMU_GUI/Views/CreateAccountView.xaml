@@ -24,7 +24,7 @@
 
     <Grid Background="White">
         <StackPanel>
-            <Button Content="Back" Width="40" HorizontalAlignment="Left" Margin="10,15,0,0"/>
+            <Button Content="Back" Name="btnBack" Width="40" HorizontalAlignment="Left" Margin="10,15,0,0" Click="BtnBack_OnClick"/>
             <Label Content="Username:"/>
             <TextBox/>
             <Label Content="E-mail:"/>
