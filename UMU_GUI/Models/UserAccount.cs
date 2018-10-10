@@ -8,7 +8,7 @@ namespace UMU_GUI.Model
 {
     public class UserAccount
     {
-        UserAccount()
+        public UserAccount()
         {
 
         }
