@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using UMU_GUI.ViewModels;
 
 namespace UMU_GUI.Views
 {
