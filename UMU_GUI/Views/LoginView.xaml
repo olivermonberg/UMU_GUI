@@ -6,6 +6,7 @@
              xmlns:model="clr-namespace:UMU_GUI.Model"
              xmlns:converter="clr-namespace:UMU_GUI.Converter"
              xmlns:viewModels="clr-namespace:UMU_GUI.ViewModels"
+             xmlns:views="clr-namespace:UMU_GUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
@@ -24,9 +25,35 @@
             </Style.Setters>
         </Style>
 
-     </UserControl.Resources>
+        <Style TargetType="{x:Type PasswordBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border Name="MainBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="1" />
+                                <TextBlock x:Name="PlaceHolder"
+                                           Text="{TemplateBinding views:PlaceHolderHelper.PlaceHolderText}"
+                                           Foreground="LightGray" IsHitTestVisible="False"
+                                           HorizontalAlignment="Left" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="views:PlaceHolderHelper.HasPassword" Value="True">
+                                <Setter TargetName="PlaceHolder" Property="Opacity" Value="0" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-    
+    </UserControl.Resources>
+
+
     <Grid Background="White" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -62,8 +89,8 @@
                 </TextBox.Style>
             </TextBox>
 
-            <PasswordBox x:Name="passwordBox" Width="253" MaxLength="16"
-                         PasswordChanged="passwordBox_PasswordChanged"/>
+            <PasswordBox x:Name="PasswordBox" Width="253" MaxLength="16" views:PlaceHolderHelper.PlaceHolderText="Password" />
+
 
             <TextBlock x:Name="statusText" HorizontalAlignment="Center" />
 
