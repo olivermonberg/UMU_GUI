@@ -6,7 +6,7 @@
              xmlns:model="clr-namespace:UMU_GUI.Model"
              xmlns:converter="clr-namespace:UMU_GUI.Converter"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
         <model:UserAccount x:Key="UserAccount"></model:UserAccount>
         <converter:LoginConverter x:Key="LoginConverter"></converter:LoginConverter>
@@ -98,6 +98,18 @@
                     </Button.CommandParameter>
                 </Button>
             </Grid>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Forget password" Click="Password_btnClick">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <ContentPresenter />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <CheckBox Margin="39,5,0,0" />
+                <Label Content="I accept the terms"/>
+            </StackPanel>
         </StackPanel>
+
     </Grid>
 </UserControl>

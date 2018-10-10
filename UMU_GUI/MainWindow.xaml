@@ -6,7 +6,7 @@
         xmlns:viewmodels="clr-namespace:UMU_GUI.ViewModels"
         xmlns:views="clr-namespace:UMU_GUI.Views"
        mc:Ignorable="d"
-        Title="UniMeetUp" Height="450" Width="800">
+        Title="UniMeetUp" Height="500" Width="800">
     <Window.Resources>
         <DataTemplate x:Name="CreateAccountTemplate" DataType="{x:Type viewmodels:CreateAccountViewModel}">
             <views:CreateAccountView DataContext="{Binding}"/>

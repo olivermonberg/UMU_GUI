@@ -22,7 +22,7 @@ namespace UMU_GUI.ViewModels
 
         public void Login()
         {
-
+            
         }
 
         //public bool CanLogin(string email, string password)
