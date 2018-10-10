@@ -22,18 +22,18 @@ namespace UMU_GUI.ViewModel
         {
             get
             {
-                return _loginCommand ?? (_loginCommand = new RelayCommand(Login));
+                return _loginCommand ?? (_loginCommand = new RelayCommand<object>(Login, CanLogin));
             }
         }
 
-        public void Login()
+        public void Login(object obj)
         {
 
         }
 
-        //public bool CanLogin(string email, string password)
-        //{
-        //    
-        //}
+        public bool CanLogin(object value)
+        {
+            return true;
+        }
     }
 }
