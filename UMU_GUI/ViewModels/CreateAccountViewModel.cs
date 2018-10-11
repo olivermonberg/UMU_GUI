@@ -50,14 +50,15 @@ namespace UMU_GUI.ViewModels
             {
                 if (_createAccountModel.Validate_Username(Username))
                 {
-                    
+                    _createAccountModel.Create_Account(Username, Email, Password);
+                    //Switch to main window
+                }
+                else
+                {
+                    MessageBox.Show("Username is already taken, please try again.");
                 }
 
-                
             }
-
-            
-
         }
 
         private bool CompareTwoStrings(string a, string b)

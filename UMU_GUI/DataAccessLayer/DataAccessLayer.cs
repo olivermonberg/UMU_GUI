@@ -10,12 +10,24 @@ namespace UMU_GUI.DataAccessLayer
     public interface IDataAccessLayer
     {
         bool Check_if_Email_and_Password_is_in_database(string Email, string Password);
+        bool Check_In_Database_If_Username_Is_Already_In_Use(string Username);
+        void Create_Account_In_Database(string Username, string Email, string Password);
     }
     public class DataAccessLayer : IDataAccessLayer
     {
         public bool Check_if_Email_and_Password_is_in_database(string Email, string Password)
         {
             return true;
+        }
+
+        public bool Check_In_Database_If_Username_Is_Already_In_Use(string Username)
+        {
+            return false;
+        }
+
+        public void Create_Account_In_Database(string Username, string Email, string Password)
+        {
+
         }
     }
 }
