@@ -4,12 +4,28 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using MvvmFoundation.Wpf;
+using UMU_GUI.Model;
+using UMU_GUI.Models;
 using UMU_GUI.Views;
 
 namespace UMU_GUI.ViewModels
 {
     public class CreateAccountViewModel : ViewModelBase
     {
+        private UserAccount _currentUserAccount;
+        private readonly ICreateAccountModel _createAccountModel;
+
+        public CreateAccountViewModel()
+        {
+            _createAccountModel = new CreateAccountModel(new DataAccessLayer.DataAccessLayer());
+            _currentUserAccount = new UserAccount();
+        }
+        public CreateAccountViewModel(ICreateAccountModel createAccountModel, UserAccount userAccount)
+        {
+            _createAccountModel = createAccountModel;
+            _currentUserAccount = userAccount;
+        }
+
         ICommand _createAccountCommand;
         public ICommand CreateAccountCommand
         {
@@ -32,7 +48,12 @@ namespace UMU_GUI.ViewModels
             if (Check_If_Given_Emails_Differ_And_Format_Is_Valid(Email, EmailConfirm) &&
                 Check_If_Given_Passwords_Differ_And_Format_Is_Valid(Password, PasswordRepeat))
             {
-                //To be continued Androgles
+                if (_createAccountModel.Validate_Username(Username))
+                {
+                    
+                }
+
+                
             }
 
             

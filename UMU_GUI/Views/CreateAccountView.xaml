@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <viewModels:LoginViewModel x:Key="LoginViewModel"></viewModels:LoginViewModel>
         <viewModels:CreateAccountViewModel x:Key="CreateAccountViewModel"></viewModels:CreateAccountViewModel>
-        <converter:CreateAccountConverter x:Key="Converter"></converter:CreateAccountConverter>
+        <converter:Converter x:Key="Converter"></converter:Converter>
 
         <Style TargetType="{x:Type Label}">
             <Setter Property="VerticalAlignment" Value="Top" />

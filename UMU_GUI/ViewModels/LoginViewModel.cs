@@ -43,7 +43,7 @@ namespace UMU_GUI.ViewModels
 
             if (_loginModel.Validate_Email_and_Password(_currentUserAccount.Email, _currentUserAccount.Password))
             {
-                App.Current.MainWindow.DataContext = new CreateAccountView();
+                App.Current.MainWindow.DataContext = new CreateAccountViewModel();
             }
             else
             {
@@ -66,7 +66,7 @@ namespace UMU_GUI.ViewModels
 
         public void CreateAccountBtn()
         {
-            App.Current.MainWindow.DataContext = new CreateAccountView();
+            App.Current.MainWindow.DataContext = new CreateAccountViewModel();
         }
 
         ICommand _goToLoginScreenCommand;
@@ -80,7 +80,7 @@ namespace UMU_GUI.ViewModels
 
         public void GoToLoginScreen()
         {
-            App.Current.MainWindow.DataContext = new LoginView();
+            App.Current.MainWindow.DataContext = new LoginViewModel();
         }
     }
 }
