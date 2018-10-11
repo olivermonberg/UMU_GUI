@@ -4,17 +4,25 @@ using System.Windows.Input;
 using MvvmFoundation.Wpf;
 using UMU_GUI.Model;
 using UMU_GUI.ViewModels;
+using UMU_GUI.DataAccessLayer;
+using UMU_GUI.Views;
 
 namespace UMU_GUI.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private UserAccount CurrentUserAccount;
-        private LoginModel _loginModel;
+        private UserAccount _currentUserAccount;
+        private readonly ILoginModel _loginModel;
+
         public LoginViewModel()
         {
-            CurrentUserAccount = new UserAccount();
-            _loginModel = new LoginModel();
+            _loginModel = new LoginModel(new DataAccessLayer.DataAccessLayer());
+            _currentUserAccount = new UserAccount();
+        }
+        public LoginViewModel(ILoginModel loginModel, UserAccount userAccount)
+        {
+            _loginModel = loginModel;
+            _currentUserAccount = userAccount;
         }
 
         ICommand _loginCommand;
@@ -22,44 +30,57 @@ namespace UMU_GUI.ViewModels
         {
             get
             {
-                return _loginCommand ?? (_loginCommand = new RelayCommand<object>(Login, CanLogin));
+                return _loginCommand ?? (_loginCommand = new RelayCommand<object>(Login));
             }
         }
 
         public void Login(object parameter)
         {
             var values = (object[])parameter;
-            string Email = values[0].ToString();
-            string Password = values[1].ToString();
-            //var param = (Tuple<object, object>)parameter;
 
+            _currentUserAccount.Email = values[0].ToString();
+            _currentUserAccount.Password = values[1].ToString();
 
-            if (_loginModel.Check_if_Email_and_password_is_in_database(Email, Password))
+            if (_loginModel.Validate_Email_and_Password(_currentUserAccount.Email, _currentUserAccount.Password))
             {
                 App.Current.MainWindow.DataContext = new CreateAccountViewModel();
             }
             else
             {
-                MessageBox.Show("Password eller email er forkert");
+                MessageBox.Show("The e-mail or password you entered is incorrect.\nPlease try again.");
             }
 
-            Console.WriteLine("Username : " + Email);
-            Console.WriteLine("Password : " + Password);
+            //Console.WriteLine("Username : " + Email);
+            //Console.WriteLine("Password : " + Password);
 
         }
 
-        private bool CanLogin(object parameter)
+        ICommand _createAccountBtnCommand;
+        public ICommand CreateAccountBtnCommand
         {
-            //var values = (object[])parameter;
-            //string Email = values[0].ToString();
-            //string Password = values[1].ToString();
-            //if (_loginModel.Check_if_Email_and_password_is_in_database(Email, Password))
-            //{
-            //    //Skift skærm
-            //    return true;
-            //}
+            get
+            {
+                return _createAccountBtnCommand ?? (_createAccountBtnCommand = new RelayCommand(CreateAccountBtn));
+            }
+        }
 
-            return true;
+        public void CreateAccountBtn()
+        {
+            App.Current.MainWindow.DataContext = new CreateAccountViewModel();
+        }
+
+        ICommand _goToLoginScreenCommand;
+        public ICommand GoToLoginScreenCommand
+        {
+            get
+            {
+                return _goToLoginScreenCommand ?? (_goToLoginScreenCommand = new RelayCommand(GoToLoginScreen));
+            }
+        }
+
+        public void GoToLoginScreen()
+        {
+            App.Current.MainWindow.DataContext = new LoginViewModel();
         }
     }
 }

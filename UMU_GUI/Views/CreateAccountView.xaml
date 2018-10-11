@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:UMU_GUI.ViewModels"
+             xmlns:converter="clr-namespace:UMU_GUI.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="600">
     <UserControl.Resources>
+        <viewModels:LoginViewModel x:Key="LoginViewModel"></viewModels:LoginViewModel>
+        <viewModels:CreateAccountViewModel x:Key="CreateAccountViewModel"></viewModels:CreateAccountViewModel>
+        <converter:Converter x:Key="Converter"></converter:Converter>
+
         <Style TargetType="{x:Type Label}">
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="HorizontalAlignment" Value="Left" />
@@ -24,24 +30,33 @@
 
     <Grid Background="White">
         <StackPanel>
-            <Button Content="Back" Name="btnBack" Width="40" HorizontalAlignment="Left" Margin="10,15,0,0" Click="BtnBack_OnClick"/>
+            <Button Content="Back" Name="btnBack" Width="40" HorizontalAlignment="Left" Margin="10,15,0,0" DataContext="{StaticResource LoginViewModel}" Command="{Binding GoToLoginScreenCommand}"/>
             <Label Content="Username:"/>
-            <TextBox/>
+            <TextBox Name="tbUsername"/>
             <Label Content="E-mail:"/>
-            <TextBox/>
-            <Label Content="E-mail repeat:"/>
-            <TextBox/>
+            <TextBox Name="tbEmail"/>
+            <Label Content="Confirm E-mail:"/>
+            <TextBox Name="tbEmailConfirm"/>
             <Label Content="Password:"/>
-            <TextBox/>
-            <Label Content="Password repeat:"/>
-            <TextBox/>
+            <TextBox Name="tbPassword"/>
+            <Label Content="Repeat password:"/>
+            <TextBox Name="tbPasswordRepeat"/>
 
             <StackPanel Orientation="Horizontal">
                 <CheckBox Margin="9,12,0,0" />
                 <Label Content="I accept the terms"/>
             </StackPanel>
-            <Button Content="Create Account" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-
+            <Button Content="Create Account" Width="100" HorizontalAlignment="Right" Margin="0,0,10,0" DataContext="{StaticResource CreateAccountViewModel}" Command="{Binding CreateAccountCommand}">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource Converter}">
+                    <Binding Path="Text" ElementName="tbUsername"></Binding>
+                    <Binding Path="Text" ElementName="tbEmail"></Binding>
+                    <Binding Path="Text" ElementName="tbEmailConfirm"></Binding>
+                    <Binding Path="Text" ElementName="tbPassword"></Binding>
+                    <Binding Path="Text" ElementName="tbPasswordRepeat"></Binding>
+                </MultiBinding>
+            </Button.CommandParameter>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -12,10 +12,5 @@ namespace UMU_GUI.Views
         {
             InitializeComponent();
         }
-
-        private void BtnBack_OnClick(object sender, RoutedEventArgs e)
-        {
-            App.Current.MainWindow.DataContext = new LoginView();
-        }
     }
 }
