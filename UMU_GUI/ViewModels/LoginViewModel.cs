@@ -34,7 +34,14 @@ namespace UMU_GUI.ViewModels
             //var param = (Tuple<object, object>)parameter;
 
 
-            _loginModel.Check_if_Email_and_password_is_in_database(Email, Password);
+            if (_loginModel.Check_if_Email_and_password_is_in_database(Email, Password))
+            {
+                App.Current.MainWindow.DataContext = new CreateAccountViewModel();
+            }
+            else
+            {
+                MessageBox.Show("Password eller email er forkert");
+            }
 
             Console.WriteLine("Username : " + Email);
             Console.WriteLine("Password : " + Password);

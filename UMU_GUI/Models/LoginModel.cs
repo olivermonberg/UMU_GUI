@@ -16,10 +16,16 @@ namespace UMU_GUI.Model
 
     public class LoginModel : ILoginModel
     {
+        private string email = "Androgles1994@gmail.com";
+        private string password= "password";
+
         public bool Check_if_Email_and_password_is_in_database(string Email, string Password)
         {
-
-            return true;
+            if (Email == email && password == Password)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }
