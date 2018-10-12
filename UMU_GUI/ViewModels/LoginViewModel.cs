@@ -13,16 +13,23 @@ namespace UMU_GUI.ViewModels
     {
         private UserAccount _currentUserAccount;
         private readonly ILoginModel _loginModel;
+        private readonly INavigationService _navigationService;
+        private readonly INotificationService _notificationService;
 
         public LoginViewModel()
         {
             _loginModel = new LoginModel(new DataAccessLayer.DataAccessLayer());
             _currentUserAccount = new UserAccount();
+            _navigationService = new NavigationService();
+            _notificationService = new NotificationService();
         }
-        public LoginViewModel(ILoginModel loginModel, UserAccount userAccount)
+        public LoginViewModel(ILoginModel loginModel, INavigationService navigationService, 
+            INotificationService notificationService, UserAccount userAccount)
         {
             _loginModel = loginModel;
             _currentUserAccount = userAccount;
+            _navigationService = navigationService;
+            _notificationService = notificationService;
         }
 
         ICommand _loginCommand;
@@ -43,16 +50,12 @@ namespace UMU_GUI.ViewModels
 
             if (_loginModel.Validate_Email_and_Password(_currentUserAccount.Email, _currentUserAccount.Password))
             {
-                App.Current.MainWindow.DataContext = new CreateAccountViewModel();
+                _navigationService.ShowMainWindowView(); //This is yet to be implemented
             }
             else
             {
-                MessageBox.Show("The e-mail or password you entered is incorrect.\nPlease try again.");
+                _notificationService.Show_Message_Email_Or_Password_Is_Incorrect();
             }
-
-            //Console.WriteLine("Username : " + Email);
-            //Console.WriteLine("Password : " + Password);
-
         }
 
         ICommand _createAccountBtnCommand;
@@ -60,13 +63,8 @@ namespace UMU_GUI.ViewModels
         {
             get
             {
-                return _createAccountBtnCommand ?? (_createAccountBtnCommand = new RelayCommand(CreateAccountBtn));
+                return _createAccountBtnCommand ?? (_createAccountBtnCommand = new RelayCommand(_navigationService.ShowCreateAccountView));
             }
-        }
-
-        public void CreateAccountBtn()
-        {
-            App.Current.MainWindow.DataContext = new CreateAccountViewModel();
         }
 
         ICommand _goToLoginScreenCommand;
@@ -74,13 +72,8 @@ namespace UMU_GUI.ViewModels
         {
             get
             {
-                return _goToLoginScreenCommand ?? (_goToLoginScreenCommand = new RelayCommand(GoToLoginScreen));
+                return _goToLoginScreenCommand ?? (_goToLoginScreenCommand = new RelayCommand(_navigationService.ShowLoginView));
             }
-        }
-
-        public void GoToLoginScreen()
-        {
-            App.Current.MainWindow.DataContext = new LoginViewModel();
         }
     }
 }

@@ -14,16 +14,23 @@ namespace UMU_GUI.ViewModels
     {
         private UserAccount _currentUserAccount;
         private readonly ICreateAccountModel _createAccountModel;
+        private readonly INavigationService _navigationService;
+        private readonly INotificationService _notificationService;
 
         public CreateAccountViewModel()
         {
             _createAccountModel = new CreateAccountModel(new DataAccessLayer.DataAccessLayer());
             _currentUserAccount = new UserAccount();
+            _navigationService = new NavigationService();
+            _notificationService = new NotificationService();
         }
-        public CreateAccountViewModel(ICreateAccountModel createAccountModel, UserAccount userAccount)
+        public CreateAccountViewModel(ICreateAccountModel createAccountModel, INavigationService navigationService, 
+            INotificationService notificationService, UserAccount userAccount)
         {
             _createAccountModel = createAccountModel;
             _currentUserAccount = userAccount;
+            _navigationService = navigationService;
+            _notificationService = notificationService;
         }
 
         ICommand _createAccountCommand;
@@ -51,11 +58,14 @@ namespace UMU_GUI.ViewModels
                 if (_createAccountModel.Validate_Username(Username))
                 {
                     _createAccountModel.Create_Account(Username, Email, Password);
-                    //Switch to main window
+
+                    _navigationService.ShowLoginView();
+
+                    _notificationService.Show_Message_Account_Has_Been_Created();
                 }
                 else
                 {
-                    MessageBox.Show("Username is already taken, please try again.");
+                    _notificationService.Show_Message_Username_Is_Already_Taken();
                 }
 
             }
@@ -73,12 +83,13 @@ namespace UMU_GUI.ViewModels
         {
             if (Email != EmailConfirm)
             {
-                MessageBox.Show("E-mail differs.");
+                _notificationService.Show_Message_Emails_Does_Not_Match();
+                
                 return false;
             }
             if (!Email.Contains("@"))
             {
-                MessageBox.Show("E-mail format is invalid.");
+                _notificationService.Show_Message_Email_Format_Is_Not_Valid();
                 return false;
             }
 
@@ -90,17 +101,18 @@ namespace UMU_GUI.ViewModels
         {
             if (Password != PasswordRepeat)
             {
-                MessageBox.Show("Passwords differs.");
+                _notificationService.Show_Message_Passwords_Does_Not_Match();
                 return false;
             }
             if (Password.Length <= 8)
             {
-                MessageBox.Show("Password is too short, must be at least 8 characters.");
+                _notificationService.Show_Message_Password_Is_Too_Short();
                 return false;
             }
             if (!Password.Any(char.IsUpper) || !Password.Any(char.IsDigit))
             {
-                MessageBox.Show("Password must contain at least one uppercase letter and one number.");
+
+                _notificationService.Show_Message_Password_Not_Containing_Uppercase_Or_Number();
                 return false;
             }
 

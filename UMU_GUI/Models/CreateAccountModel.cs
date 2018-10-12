@@ -10,7 +10,7 @@ namespace UMU_GUI.Models
     public interface ICreateAccountModel
     {
         bool Validate_Username(string username);
-        void Create_Account(string Username, string Email, string Password)
+        void Create_Account(string Username, string Email, string Password);
     }
     public class CreateAccountModel : ICreateAccountModel
     {
