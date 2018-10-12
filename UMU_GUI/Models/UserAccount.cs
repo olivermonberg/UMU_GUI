@@ -12,7 +12,7 @@ namespace UMU_GUI.Model
     //    string Email { get; set; }
     //    string Password { get; set; }
     //}
-    public class UserAccount 
+    public class UserAccount
     {
         public UserAccount()
         {
@@ -21,5 +21,8 @@ namespace UMU_GUI.Model
         public string Username { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
     }
 }
