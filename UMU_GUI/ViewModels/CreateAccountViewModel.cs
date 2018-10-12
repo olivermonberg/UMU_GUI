@@ -48,14 +48,14 @@ namespace UMU_GUI.ViewModels
             if (Check_If_Given_Emails_Differ_And_Format_Is_Valid(Email, EmailConfirm) &&
                 Check_If_Given_Passwords_Differ_And_Format_Is_Valid(Password, PasswordRepeat))
             {
-                if (_createAccountModel.Validate_Username(Username))
+                if (_createAccountModel.Validate_Username_And_Email(Username,Email))
                 {
                     _createAccountModel.Create_Account(Username, Email, Password);
                     //Switch to main window
                 }
                 else
                 {
-                    MessageBox.Show("Username is already taken, please try again.");
+                    MessageBox.Show("Username or e-mail is already in use, please try again.");
                 }
 
             }
@@ -81,9 +81,7 @@ namespace UMU_GUI.ViewModels
                 MessageBox.Show("E-mail format is invalid.");
                 return false;
             }
-
             return true;
-
         }
 
         private bool Check_If_Given_Passwords_Differ_And_Format_Is_Valid(string Password, string PasswordRepeat)

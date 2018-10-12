@@ -6,7 +6,7 @@
              xmlns:viewModels="clr-namespace:UMU_GUI.ViewModels"
              xmlns:converter="clr-namespace:UMU_GUI.Converter"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="600">
+             d:DesignHeight="500" d:DesignWidth="800">
     <UserControl.Resources>
         <viewModels:LoginViewModel x:Key="LoginViewModel"></viewModels:LoginViewModel>
         <viewModels:CreateAccountViewModel x:Key="CreateAccountViewModel"></viewModels:CreateAccountViewModel>
@@ -31,6 +31,10 @@
     <Grid Background="White">
         <StackPanel>
             <Button Content="Back" Name="btnBack" Width="40" HorizontalAlignment="Left" Margin="10,15,0,0" DataContext="{StaticResource LoginViewModel}" Command="{Binding GoToLoginScreenCommand}"/>
+            <Label Content="Firstname"></Label>
+            <TextBox Name="tbFirstname"></TextBox>
+            <Label Content="Lastname"></Label>
+            <TextBox Name="tbLastname"></TextBox>
             <Label Content="Username:"/>
             <TextBox Name="tbUsername"/>
             <Label Content="E-mail:"/>

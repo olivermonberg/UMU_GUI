@@ -9,8 +9,8 @@ namespace UMU_GUI.Models
 {
     public interface ICreateAccountModel
     {
-        bool Validate_Username(string username);
-        void Create_Account(string Username, string Email, string Password)
+        bool Validate_Username_And_Email(string username,string Email);
+        void Create_Account(string Username, string Email, string Password);
     }
     public class CreateAccountModel : ICreateAccountModel
     {
@@ -20,9 +20,9 @@ namespace UMU_GUI.Models
             _dataAccessLayer = dataAccessLayer;
         }
 
-        public bool Validate_Username(string username)
+        public bool Validate_Username_And_Email(string username, string email)
         {
-            if(!_dataAccessLayer.Check_In_Database_If_Username_Is_Already_In_Use(username))
+            if(!_dataAccessLayer.Check_In_Database_If_Username_And_Email_Is_Already_In_Use(username, email))
                 return true;
 
             return false;

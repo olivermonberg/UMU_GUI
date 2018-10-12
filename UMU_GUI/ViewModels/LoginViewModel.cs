@@ -11,7 +11,7 @@ namespace UMU_GUI.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private UserAccount _currentUserAccount;
+        public UserAccount _currentUserAccount;
         private readonly ILoginModel _loginModel;
 
         public LoginViewModel()

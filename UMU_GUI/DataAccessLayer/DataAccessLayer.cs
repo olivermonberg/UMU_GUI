@@ -10,7 +10,7 @@ namespace UMU_GUI.DataAccessLayer
     public interface IDataAccessLayer
     {
         bool Check_if_Email_and_Password_is_in_database(string Email, string Password);
-        bool Check_In_Database_If_Username_Is_Already_In_Use(string Username);
+        bool Check_In_Database_If_Username_And_Email_Is_Already_In_Use(string Username,string email);
         void Create_Account_In_Database(string Username, string Email, string Password);
     }
     public class DataAccessLayer : IDataAccessLayer
@@ -20,7 +20,7 @@ namespace UMU_GUI.DataAccessLayer
             return true;
         }
 
-        public bool Check_In_Database_If_Username_Is_Already_In_Use(string Username)
+        public bool Check_In_Database_If_Username_And_Email_Is_Already_In_Use(string Username, string email)
         {
             return false;
         }
