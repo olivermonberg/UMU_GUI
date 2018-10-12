@@ -11,7 +11,7 @@ namespace UMU_GUI.Views
     {
         void ShowCreateAccountView();
         void ShowLoginView();
-        void ShowMainWindowView();
+        void ShowMainMenuView();
     }
     public class NavigationService : INavigationService
     {
@@ -29,7 +29,7 @@ namespace UMU_GUI.Views
             App.Current.MainWindow.DataContext = new LoginView();
         }
 
-        public void ShowMainWindowView()
+        public void ShowMainMenuView()
         {
             //This is yet to be implemented
         }

@@ -67,7 +67,6 @@ namespace UMU_GUI.ViewModels
                 {
                     _notificationService.Show_Message_Username_Is_Already_Taken();
                 }
-
             }
         }
 
@@ -94,7 +93,6 @@ namespace UMU_GUI.ViewModels
             }
 
             return true;
-
         }
 
         private bool Check_If_Given_Passwords_Differ_And_Format_Is_Valid(string Password, string PasswordRepeat)

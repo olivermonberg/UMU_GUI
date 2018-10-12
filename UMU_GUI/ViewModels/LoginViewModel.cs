@@ -50,7 +50,7 @@ namespace UMU_GUI.ViewModels
 
             if (_loginModel.Validate_Email_and_Password(_currentUserAccount.Email, _currentUserAccount.Password))
             {
-                _navigationService.ShowMainWindowView(); //This is yet to be implemented
+                _navigationService.ShowMainMenuView(); //This is yet to be implemented
             }
             else
             {
