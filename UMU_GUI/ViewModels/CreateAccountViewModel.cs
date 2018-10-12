@@ -102,7 +102,7 @@ namespace UMU_GUI.ViewModels
                 _notificationService.Show_Message_Passwords_Does_Not_Match();
                 return false;
             }
-            if (Password.Length <= 8)
+            if (Password.Length < 8)
             {
                 _notificationService.Show_Message_Password_Is_Too_Short();
                 return false;

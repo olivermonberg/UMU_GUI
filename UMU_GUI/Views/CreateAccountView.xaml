@@ -31,10 +31,10 @@
     <Grid Background="White">
         <StackPanel>
             <Button Content="Back" Name="btnBack" Width="40" HorizontalAlignment="Left" Margin="10,15,0,0" DataContext="{StaticResource LoginViewModel}" Command="{Binding GoToLoginScreenCommand}"/>
-            <Label Content="Firstname"></Label>
+            <!--<Label Content="Firstname"></Label>
             <TextBox Name="tbFirstname"></TextBox>
             <Label Content="Lastname"></Label>
-            <TextBox Name="tbLastname"></TextBox>
+            <TextBox Name="tbLastname"></TextBox>-->
             <Label Content="Username:"/>
             <TextBox Name="tbUsername"/>
             <Label Content="E-mail:"/>
